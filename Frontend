@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Philosophy Debate AI</title>
+</head>
+<body>
+  <h1>Philosophy Debate AI</h1>
+  <textarea id="prompt" rows="4" cols="50" placeholder="Type your argument..."></textarea><br>
+  <button onclick="sendPrompt()">Debate!</button>
+  <p id="response"></p>
+
+  <script>
+    async function sendPrompt() {
+      const prompt = document.getElementById("prompt").value;
+      const res = await fetch("https://your-repl-url.repl.co/debate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt })
+      });
+      const data = await res.json();
+      document.getElementById("response").innerText = data.reply;
+    }
+  </script>
+</body>
+</html>
